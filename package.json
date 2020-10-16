@@ -7,7 +7,7 @@
     "build": "npm run build:_rollup",
     "build:_gulp": "gulp --gulpfile ./build.ts build",
     "build:_rollup": "rollup -c rollup.config.js",
-    "start": "http-server -c 3000"
+    "start": "http-server -p 3000"
   },
   "devDependencies": {
     "@wasm-tool/rollup-plugin-rust": "^1.0.5",
