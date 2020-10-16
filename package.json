@@ -1,0 +1,26 @@
+{
+  "name": "wasm-rust-app",
+  "description": "",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "npm run build:_rollup",
+    "build:_gulp": "gulp --gulpfile ./build.ts build",
+    "build:_rollup": "rollup -c rollup.config.js",
+    "start": "http-server -c 3000"
+  },
+  "devDependencies": {
+    "@wasm-tool/rollup-plugin-rust": "^1.0.5",
+    "@wasm/studio-utils": "*",
+    "gulp": "^4.0.2",
+    "http-server": "^0.12.3",
+    "rollup": "^2.32.0",
+    "ts-node": "~5.0.0",
+    "typescript": "~2.7.2"
+  },
+  "wasmStudio": {
+    "name": "Empty Rust Project",
+    "description": "# Empty Rust Project",
+    "icon": "rust-lang-file-icon"
+  }
+}
