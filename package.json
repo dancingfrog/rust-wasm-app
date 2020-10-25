@@ -5,6 +5,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "npm run build:_rollup",
+    "build:_cargo": "cargo build --target wasm32-unknown-unknown",
     "build:_gulp": "gulp --gulpfile ./build.ts build",
     "build:_rollup": "rollup -c rollup.config.js",
     "start": "http-server -p 3000"
