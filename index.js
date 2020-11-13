@@ -4,7 +4,7 @@ fetch('./target/wasm32-unknown-unknown/release/wasm_rusty_checkers.wasm')
     .then(callWebAssemblyFunction)
     .catch(e => {
         console.error('Fallback to debug wasm module because:\n' + e);
-        fetch('./target/wasm32-unknown-unknown/release/wasm_rusty_checkers.wasm')
+        fetch('./target/wasm32-unknown-unknown/debug/wasm_rusty_checkers.wasm')
             .then(response => response.arrayBuffer())
             .then(instantiateWebAssembly)
             .then(callWebAssemblyFunction)
