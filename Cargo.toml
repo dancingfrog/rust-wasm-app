@@ -9,3 +9,5 @@ crate-type = ["cdylib"]
 
 [dependencies]
 wasm-bindgen = ""
+mut_static = ""
+lazy_static = ""

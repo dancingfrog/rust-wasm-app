@@ -18,7 +18,7 @@ export default [
                     // { src: 'src/images', dest: 'public/' },
                     // { src: 'src/styles/imports', dest: 'public/' },
                     { src: 'static/**', dest: 'public/' },
-                    { src: 'target/wasm32-unknown-unknown/release/*', dest: 'public/' }
+                    { src: 'target/wasm32-unknown-unknown/release/*.wasm', dest: 'public/' }
                 ]
             }),
         ],
