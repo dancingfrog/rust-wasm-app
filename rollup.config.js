@@ -1,6 +1,7 @@
-import rust from "@wasm-tool/rollup-plugin-rust";
 import commonjs from 'rollup-plugin-commonjs';
 import copy from 'rollup-plugin-copy';
+import resolve from 'rollup-plugin-node-resolve';
+import rust from "@wasm-tool/rollup-plugin-rust";
 
 export default [
     {
@@ -22,5 +23,26 @@ export default [
                 ]
             }),
         ],
+    },
+    {
+        input: 'src/game-service.js',
+        output: {
+            sourcemap: true,
+            name: 'self',
+            format: 'umd',
+            extend: true,
+            exports: 'named',
+            file: 'public/game-service.js'
+        },
+        plugins: [
+            commonjs(),
+
+            resolve({
+                browser: true
+            })
+        ],
+        watch: {
+            clearScreen: false
+        }
     }
 ];
