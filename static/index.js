@@ -1,7 +1,7 @@
 fetch('wasm_rusty_checkers.wasm')
     .then(response => response.arrayBuffer())
     .then(instantiateWebAssembly)
-    .then(demoRustyCheckers)
+    .then(demoCheckersFunctions)
     .catch(console.error);
 
 function instantiateWebAssembly (bytes) {
@@ -23,25 +23,25 @@ function callWebAssemblyFunction (results) {
     console.log(instance);
 }
 
-function demoRustyCheckers (results) {
-    const instance = results.instance;
+function demoCheckersFunctions (results) {
+    const checkersFunctions = results.instance.exports;
 
     const container = document.querySelector('#container');
 
     container.appendChild(newTurnElement("At start, current turn is " +
-        instance.exports.get_current_turn()));
+        checkersFunctions.get_current_turn()));
 
-    let piece = instance.exports.get_piece(0, 7);
+    let piece = checkersFunctions.get_piece(0, 7);
     container.appendChild(newTurnElement("Piece at 0,7 is " + piece));
 
-    let res = instance.exports.move_piece(0, 5, 1, 4); // B
+    let res = checkersFunctions.move_piece(0, 5, 1, 4); // B
     container.appendChild(newTurnElement("First move result: " + res));
 
-    container.appendChild(newTurnElement("Turn after move: " + instance.exports.get_current_turn()));
+    container.appendChild(newTurnElement("Turn after move: " + checkersFunctions.get_current_turn()));
 
-    let bad = instance.exports.move_piece(1, 4, 2, 3); // illegal move
+    let bad = checkersFunctions.move_piece(1, 4, 2, 3); // illegal move
     container.appendChild(newTurnElement("Illegal move result: " + bad));
-    container.appendChild(newTurnElement("Turn after illegal move: " + instance.exports.get_current_turn()));
+    container.appendChild(newTurnElement("Turn after illegal move: " + checkersFunctions.get_current_turn()));
 }
 
 function newTurnElement (turnDescription) {
