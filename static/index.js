@@ -5,14 +5,30 @@ fetch('wasm_rusty_checkers.wasm')
     .catch(console.error);
 
 function instantiateWebAssembly (bytes) {
+    if (window.Worker) {
+
+        const processor = new Worker('game-service.js');
+
+        processor.postMessage({
+            "action": "test",
+            "payload": [
+                "Test game service worker"
+            ]
+        });
+
+        processor.onmessage = function (evt) {
+            console.log("Worker callback: ", evt);
+        }
+    }
+
     return WebAssembly.instantiate(bytes, {
         env: {
             notify_piecemoved: (fX, fY, tX, tY) => {
-                console.log("A piece moved from (" + fX + "," + fY +
+                console.log("Rust lib callback: A piece moved from (" + fX + "," + fY +
                     ") to (" + tX + "," + tY + ")");
             },
             notify_piececrowned: (x, y) => {
-                console.log("A piece was crowned at (" + x + "," + y + ")");
+                console.log("Rust lib callback: A piece was crowned at (" + x + "," + y + ")");
             }
         },
     });
