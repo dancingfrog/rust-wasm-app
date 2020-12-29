@@ -84,6 +84,5 @@ extern "C" {
     fn notify_piececrowned(x: i32, y: i32);
 }
 
-#[no_mangle]
 mod board;
 mod game;
