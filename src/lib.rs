@@ -67,9 +67,7 @@ pub extern "C" fn move_piece(fx: i32, fy: i32, tx: i32, ty: i32) -> i32 {
         Ok(mr) => {
             unsafe {
                 notify_piecemoved(fx, fy, tx, ty);
-            }
-            if mr.crowned {
-                unsafe {
+                if mr.crowned {
                     notify_piececrowned(tx, ty);
                 }
             }

@@ -1,4 +1,6 @@
 /Cargo.lock
 /package-lock.json
-/node_modules/
-/.idea/
+/node_modules
+/.idea
+/public
+/target
