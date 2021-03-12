@@ -1,4 +1,4 @@
-# WASM Rust
+# Rust WASM
 
 A simple Web Assembly module written in Rust. 
 
