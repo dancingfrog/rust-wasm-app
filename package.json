@@ -1,27 +1,24 @@
 {
-  "name": "wasm-rust-app",
-  "description": "",
-  "private": true,
-  "version": "1.0.0",
-  "scripts": {
-    "build": "npm run build:_rollup",
-    "build:_cargo": "cargo build --target wasm32-unknown-unknown",
-    "build:_gulp": "gulp --gulpfile ./build.ts build",
-    "build:_rollup": "rollup -c rollup.config.js",
-    "start": "http-server -p 3000"
-  },
+  "name": "wasm-rust-emscripten",
+  "version": "0.0.1",
+  "description": "Simple example wasm/rust app targeting wasm32-unknown-emscripten",
+  "main": "index.js",
   "devDependencies": {
     "@wasm-tool/rollup-plugin-rust": "^1.0.5",
-    "@wasm/studio-utils": "*",
-    "gulp": "^4.0.2",
-    "http-server": "^0.12.3",
-    "rollup": "^2.32.0",
-    "ts-node": "~5.0.0",
-    "typescript": "~2.7.2"
+    "html-webpack-plugin": "^4.5.1",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-copy": "^3.4.0",
+    "webpack": "^5.12.1",
+    "webpack-cli": "^4.3.1",
+    "webpack-dev-server": "^3.11.2"
   },
-  "wasmStudio": {
-    "name": "Empty Rust Project",
-    "description": "# Empty Rust Project",
-    "icon": "rust-lang-file-icon"
-  }
+  "scripts": {
+    "build": "cargo build --target wasm32-unknown-unknown && wasm-bindgen target/wasm32-unknown-unknown/debug/edu.wasm --out-dir target/wasm32-unknown-unknown/debug",
+    "bundle": "npm run build && webpack bundle",
+    "postinstall": "rustup target add wasm32-unknown-unknown && cargo install -f wasm-bindgen-cli",
+    "serve": "webpack serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
 }
